@@ -1,0 +1,22 @@
+{
+  "name": "train-traffic-optimization-backend",
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/server-simple.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/server-simple.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "5001",
+    "MONGODB_URI": "@mongodb_uri",
+    "JWT_SECRET": "@jwt_secret"
+  }
+}

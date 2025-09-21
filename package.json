@@ -1,0 +1,26 @@
+{
+  "name": "train-traffic-optimization-system",
+  "version": "1.0.0",
+  "description": "Train Traffic Optimization System for Smart India Hackathon 2025",
+  "scripts": {
+    "build": "cd frontend && npm run build",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "start": "cd frontend && npm start",
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm start"
+  },
+  "keywords": [
+    "train",
+    "traffic",
+    "optimization",
+    "smart-india-hackathon",
+    "railway",
+    "transportation"
+  ],
+  "author": "Arnab Maity",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
