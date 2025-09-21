@@ -1,204 +1,261 @@
-# Train Traffic Optimization System - SIH 2025
+# RailZenith Backend
 
-A comprehensive Train Traffic Optimization system built for Smart India Hackathon 2025.
+> Advanced Railway Traffic Management System - Backend API
 
-## 🚂 Features
+![RailZenith](https://img.shields.io/badge/RailZenith-Backend-orange?style=for-the-badge)
+![Node.js](https://img.shields.io/badge/Node.js-green?style=for-the-badge&logo=node.js)
+![Express](https://img.shields.io/badge/Express-black?style=for-the-badge&logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-green?style=for-the-badge&logo=mongodb)
 
-- **Real-time Train Tracking**: Live monitoring of train positions and status
-- **Route Optimization**: AI-powered route planning and optimization algorithms
-- **Schedule Management**: Comprehensive schedule planning and management
-- **Traffic Coordination**: Advanced traffic coordination and conflict resolution
-- **Performance Analytics**: Real-time analytics and reporting dashboard
-- **Responsive UI**: Modern, responsive interface built with Next.js and Tailwind CSS
+## 🚄 Overview
+
+RailZenith Backend provides the core API services for the comprehensive railway traffic optimization and management system built for Smart India Hackathon. This backend handles real-time train data, schedule management, route optimization, and performance analytics.
+
+## ✨ Features
+
+- **🚂 Train Management**: CRUD operations for train data and status
+- **📅 Schedule Management**: Departure/arrival times and platform assignments
+- **🛤️ Route Optimization**: Advanced algorithms for efficient railway routing
+- **📊 Real-time Analytics**: Performance metrics and system monitoring
+- **🔄 Live Updates**: Socket.io integration for real-time data streaming
+- **🏗️ RESTful API**: Clean and well-documented API endpoints
+- **🔒 Data Validation**: Robust input validation and error handling
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **Next.js 15.5.3** - React framework with App Router
-- **React 19** - Component library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling framework
-- **Axios** - API client
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose ODM
+- **Real-time**: Socket.io
+- **Validation**: Express Validator
+- **Environment**: dotenv
+- **Deployment**: Railway/Vercel/Heroku
 
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB** - Database
-- **Mongoose** - ODM
-- **Socket.io** - Real-time communication
-- **Helmet** - Security middleware
-
-## 📁 Project Structure
-
-```
-SIH_CRAZY/
-├── frontend/           # Next.js React application
-│   ├── src/
-│   │   ├── app/       # App Router pages
-│   │   ├── components/ # React components
-│   │   ├── services/  # API services
-│   │   └── types/     # TypeScript types
-│   └── package.json
-├── backend/           # Node.js Express API
-│   ├── models/       # Database models
-│   ├── routes/       # API routes
-│   ├── middleware/   # Express middleware
-│   └── server.js
-└── README.md
-```
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+- Node.js 18+
 - MongoDB (local or cloud)
+- npm or yarn
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/arnab-maity007/SIH.git
-   cd SIH
-   ```
+\`\`\`bash
+# Clone the repository
+git clone https://github.com/arnab-maity007/SIH_BACKEND.git
 
-2. **Install Frontend Dependencies**
-   ```bash
-   cd frontend
-   npm install
-   ```
+# Navigate to project directory
+cd SIH_BACKEND
 
-3. **Install Backend Dependencies**
-   ```bash
-   cd ../backend
-   npm install
-   ```
+# Install dependencies
+npm install
 
-4. **Environment Setup**
-   
-   Create `.env` file in backend directory:
-   ```env
-   PORT=5001
-   MONGODB_URI=mongodb://localhost:27017/train_optimization
-   NODE_ENV=development
-   JWT_SECRET=your_jwt_secret_here
-   ```
+# Create environment file
+cp .env.example .env
 
-### Running the Application
+# Start development server
+npm run dev
+\`\`\`
 
-1. **Start Backend Server**
-   ```bash
-   cd backend
-   npm run dev
-   ```
-   Backend will run on `http://localhost:5001`
+### Environment Variables
 
-2. **Start Frontend Development Server**
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-   Frontend will run on `http://localhost:3000`
+Create a \`.env\` file in the root directory:
 
-## 📊 API Endpoints
+\`\`\`env
+PORT=3001
+MONGODB_URI=mongodb://localhost:27017/railzenith
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:3000
+\`\`\`
+
+### Available Scripts
+
+\`\`\`bash
+npm start       # Start production server
+npm run dev     # Start development server with nodemon
+npm test        # Run tests
+npm run lint    # Run ESLint
+\`\`\`
+
+## 📡 API Endpoints
 
 ### Train Management
-- `GET /api/trains` - Get all trains
-- `POST /api/trains` - Create new train
-- `PUT /api/trains/:id` - Update train
-- `DELETE /api/trains/:id` - Delete train
+\`\`\`
+GET    /api/trains          # Get all trains
+GET    /api/trains/:id      # Get specific train
+POST   /api/trains          # Create new train
+PUT    /api/trains/:id      # Update train
+DELETE /api/trains/:id      # Delete train
+\`\`\`
 
-### Schedule Management  
-- `GET /api/schedules` - Get all schedules
-- `POST /api/schedules` - Create new schedule
-- `PUT /api/schedules/:id` - Update schedule
-- `DELETE /api/schedules/:id` - Delete schedule
+### Schedule Management
+\`\`\`
+GET    /api/schedules       # Get all schedules
+GET    /api/schedules/:id   # Get specific schedule
+POST   /api/schedules       # Create new schedule
+PUT    /api/schedules/:id   # Update schedule
+DELETE /api/schedules/:id   # Delete schedule
+\`\`\`
 
 ### Route Optimization
-- `POST /api/optimization/route` - Optimize route
-- `GET /api/optimization/history` - Get optimization history
+\`\`\`
+GET    /api/routes          # Get all routes
+POST   /api/routes/optimize # Optimize route
+GET    /api/routes/:id      # Get specific route
+\`\`\`
 
-### Analytics
-- `GET /api/analytics/dashboard` - Get dashboard analytics
-- `GET /api/analytics/performance` - Get performance metrics
-- `POST /api/analytics/custom-report` - Generate custom report
+### Analytics & Monitoring
+\`\`\`
+GET    /api/analytics/performance  # Get performance metrics
+GET    /api/analytics/delays       # Get delay statistics
+GET    /api/analytics/occupancy    # Get occupancy data
+GET    /api/health                 # Health check endpoint
+\`\`\`
 
-## 🌟 Key Components
+## 📁 Project Structure
 
-### Frontend Components
-- **Dashboard**: Main analytics and overview dashboard
-- **TrainTracking**: Real-time train tracking interface
-- **ScheduleManagement**: Schedule CRUD operations
-- **RouteOptimization**: Route planning and optimization
-- **Sidebar**: Navigation component
+\`\`\`
+├── models/
+│   ├── Train.js           # Train data model
+│   ├── Schedule.js        # Schedule data model
+│   └── Route.js           # Route data model
+├── routes/
+│   ├── trains.js          # Train API routes
+│   ├── schedules.js       # Schedule API routes
+│   ├── routes.js          # Route optimization routes
+│   └── analytics.js       # Analytics routes
+├── middleware/
+│   ├── auth.js           # Authentication middleware
+│   ├── validation.js     # Input validation
+│   └── errorHandler.js   # Error handling
+├── utils/
+│   ├── database.js       # Database connection
+│   └── optimization.js   # Route optimization algorithms
+├── server.js             # Main server file
+└── package.json          # Dependencies and scripts
+\`\`\`
 
-### Backend Services
-- **Train Service**: Train lifecycle management
-- **Schedule Service**: Schedule management
-- **Optimization Service**: Route optimization algorithms
-- **Analytics Service**: Reporting and analytics
+## 🗄️ Database Schema
 
-## 🔧 Development
+### Train Model
+\`\`\`javascript
+{
+  id: String,
+  name: String,
+  route: String,
+  status: String,
+  currentLocation: String,
+  nextStation: String,
+  speed: Number,
+  capacity: Number,
+  occupancy: Number,
+  delay: Number,
+  type: String,
+  platform: String,
+  createdAt: Date,
+  updatedAt: Date
+}
+\`\`\`
 
-### Code Quality
-- ESLint configuration for code quality
-- TypeScript for type safety
-- Prettier for code formatting
+### Schedule Model
+\`\`\`javascript
+{
+  id: String,
+  trainId: String,
+  departure: String,
+  arrival: String,
+  route: String,
+  platform: String,
+  status: String,
+  createdAt: Date,
+  updatedAt: Date
+}
+\`\`\`
 
-### Testing
-```bash
-# Run frontend tests
-cd frontend && npm test
+## 🔄 Real-time Features
 
-# Run backend tests  
-cd backend && npm test
-```
+The backend supports real-time updates through Socket.io:
 
-### Building for Production
-```bash
-# Build frontend
-cd frontend && npm run build
-
-# Build backend
-cd backend && npm run build
-```
+- **Train Status Updates**: Live train location and status changes
+- **Schedule Changes**: Real-time schedule modifications
+- **Delay Notifications**: Instant delay alerts
+- **System Alerts**: Critical system notifications
 
 ## 🚀 Deployment
 
-### Frontend (Vercel)
-1. Connect GitHub repository to Vercel
-2. Configure environment variables
-3. Deploy automatically on push to main
+### Railway (Recommended)
+\`\`\`bash
+# Deploy to Railway
+railway login
+railway init
+railway up
+\`\`\`
 
-### Backend (Railway/Render)
-1. Connect GitHub repository to hosting platform
-2. Configure environment variables
-3. Set up MongoDB Atlas for production database
+### Vercel
+\`\`\`bash
+# Deploy to Vercel
+npm run build
+vercel --prod
+\`\`\`
+
+### Heroku
+\`\`\`bash
+# Deploy to Heroku
+heroku create railzenith-backend
+git push heroku main
+\`\`\`
+
+## 🔒 Security Features
+
+- **Input Validation**: All inputs are validated and sanitized
+- **Error Handling**: Comprehensive error handling and logging
+- **CORS Configuration**: Configurable CORS settings
+- **Rate Limiting**: API rate limiting for stability
+- **Environment Variables**: Secure configuration management
+
+## 🧪 Testing
+
+\`\`\`bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run specific test file
+npm test -- --grep "Train API"
+\`\`\`
+
+## 📊 Monitoring & Analytics
+
+The backend provides comprehensive analytics:
+
+- **Performance Metrics**: Response times, throughput
+- **Train Analytics**: On-time performance, delay patterns
+- **System Health**: Server status, database connections
+- **Usage Statistics**: API endpoint usage
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create your feature branch (\`git checkout -b feature/AmazingFeature\`)
+3. Commit your changes (\`git commit -m 'Add some AmazingFeature'\`)
+4. Push to the branch (\`git push origin feature/AmazingFeature\`)
 5. Open a Pull Request
 
-## 📝 License
+## 📄 License
 
-This project is developed for Smart India Hackathon 2025.
+This project is part of Smart India Hackathon 2024 submission.
 
-## 👥 Team
+## 🔗 Related Repositories
 
-- **Lead Developer**: [Your Name]
-- **Project**: Train Traffic Optimization System
-- **Event**: Smart India Hackathon 2025
+- [SIH_FRONTEND](https://github.com/arnab-maity007/SIH_FRONTEND) - Frontend Application
+- [SIH](https://github.com/arnab-maity007/SIH) - Complete Project
 
-## 🙏 Acknowledgments
+## 📞 Support
 
-- Smart India Hackathon organizers
-- Railway domain experts
-- Open source community
+For questions and support, please open an issue in the GitHub repository.
 
 ---
 
-**Built with ❤️ for Smart India Hackathon 2025**
+**Built with ❤️ for Smart India Hackathon 2024**
