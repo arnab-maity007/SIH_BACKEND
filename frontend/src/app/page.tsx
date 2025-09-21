@@ -16,22 +16,132 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [apiConnected, setApiConnected] = useState(false);
 
-  useEffect(() => {
-    initializeApp();
-  }, []);
-
   const loadMockData = useCallback(() => {
-    // Fallback to mock data if API is not available
+    // Enhanced fallback data with realistic Indian Railway information
     const sampleTrains: Train[] = [
-      { id: 'T001', name: 'Express 101', route: 'Delhi-Mumbai', status: 'On Time', currentLocation: 'Gwalior', nextStation: 'Bhopal' },
-      { id: 'T002', name: 'Rajdhani Express', route: 'Delhi-Chennai', status: 'Delayed', currentLocation: 'Nagpur', nextStation: 'Hyderabad' },
-      { id: 'T003', name: 'Shatabdi Express', route: 'Mumbai-Pune', status: 'On Time', currentLocation: 'Lonavala', nextStation: 'Pune' },
+      { 
+        id: '12345', 
+        name: 'Rajdhani Express', 
+        route: 'New Delhi - Mumbai Central', 
+        status: 'On Time', 
+        currentLocation: 'Mathura Junction', 
+        nextStation: 'Agra Cantt',
+        speed: 130,
+        capacity: 1200,
+        occupancy: 85,
+        delay: 0,
+        type: 'Superfast',
+        platform: '2'
+      },
+      { 
+        id: '12650', 
+        name: 'Karnataka Express', 
+        route: 'New Delhi - Bangalore', 
+        status: 'Delayed', 
+        currentLocation: 'Gwalior', 
+        nextStation: 'Jhansi',
+        speed: 0,
+        capacity: 1400,
+        occupancy: 72,
+        delay: 15,
+        type: 'Express',
+        platform: '4'
+      },
+      { 
+        id: '22691', 
+        name: 'Vande Bharat Express', 
+        route: 'New Delhi - Varanasi', 
+        status: 'On Time', 
+        currentLocation: 'Kanpur Central', 
+        nextStation: 'Lucknow',
+        speed: 160,
+        capacity: 1128,
+        occupancy: 95,
+        delay: 0,
+        type: 'Semi High Speed',
+        platform: '1'
+      },
+      { 
+        id: '12002', 
+        name: 'Shatabdi Express', 
+        route: 'New Delhi - Bhopal', 
+        status: 'On Time', 
+        currentLocation: 'Gwalior', 
+        nextStation: 'Jhansi',
+        speed: 150,
+        capacity: 1200,
+        occupancy: 88,
+        delay: 0,
+        type: 'Superfast',
+        platform: '3'
+      },
+      { 
+        id: '12951', 
+        name: 'Mumbai Rajdhani', 
+        route: 'Mumbai Central - New Delhi', 
+        status: 'Running Late', 
+        currentLocation: 'Ratlam', 
+        nextStation: 'Ujjain',
+        speed: 110,
+        capacity: 1200,
+        occupancy: 91,
+        delay: 25,
+        type: 'Superfast',
+        platform: '6'
+      },
+      { 
+        id: '20501', 
+        name: 'Gatimaan Express', 
+        route: 'New Delhi - Agra Cantt', 
+        status: 'On Time', 
+        currentLocation: 'Faridabad', 
+        nextStation: 'Palwal',
+        speed: 160,
+        capacity: 756,
+        occupancy: 78,
+        delay: 0,
+        type: 'Semi High Speed',
+        platform: '8'
+      },
+      { 
+        id: '18237', 
+        name: 'Chhattisgarh Express', 
+        route: 'Amritsar - Bilaspur', 
+        status: 'On Time', 
+        currentLocation: 'Nagpur', 
+        nextStation: 'Gondia',
+        speed: 95,
+        capacity: 1800,
+        occupancy: 65,
+        delay: 0,
+        type: 'Express',
+        platform: '5'
+      },
+      { 
+        id: '12009', 
+        name: 'Deccan Queen', 
+        route: 'Mumbai CST - Pune', 
+        status: 'On Time', 
+        currentLocation: 'Lonavala', 
+        nextStation: 'Pune',
+        speed: 85,
+        capacity: 1200,
+        occupancy: 82,
+        delay: 0,
+        type: 'Express',
+        platform: '1'
+      },
     ];
 
     const sampleSchedules: Schedule[] = [
-      { id: 'S001', trainId: 'T001', departure: '08:00', arrival: '20:00', route: 'Delhi-Mumbai' },
-      { id: 'S002', trainId: 'T002', departure: '14:30', arrival: '10:15+1', route: 'Delhi-Chennai' },
-      { id: 'S003', trainId: 'T003', departure: '06:15', arrival: '09:45', route: 'Mumbai-Pune' },
+      { id: 'sch1', trainId: '12345', departure: '16:55', arrival: '08:35+1', route: 'NDLS - MMCT', platform: '2', status: 'On Time' },
+      { id: 'sch2', trainId: '12650', departure: '21:50', arrival: '22:00+1', route: 'NDLS - SBC', platform: '4', status: 'Delayed' },
+      { id: 'sch3', trainId: '22691', departure: '06:00', arrival: '14:00', route: 'NDLS - BSB', platform: '1', status: 'On Time' },
+      { id: 'sch4', trainId: '12002', departure: '06:30', arrival: '14:45', route: 'NDLS - BPL', platform: '3', status: 'On Time' },
+      { id: 'sch5', trainId: '12951', departure: '17:20', arrival: '09:55+1', route: 'MMCT - NDLS', platform: '6', status: 'Running Late' },
+      { id: 'sch6', trainId: '20501', departure: '08:10', arrival: '12:30', route: 'NDLS - AGC', platform: '8', status: 'On Time' },
+      { id: 'sch7', trainId: '18237', departure: '22:40', arrival: '18:15+2', route: 'ASR - BSP', platform: '5', status: 'On Time' },
+      { id: 'sch8', trainId: '12009', departure: '07:15', arrival: '10:40', route: 'CSMT - PUNE', platform: '1', status: 'On Time' },
     ];
 
     setTrains(sampleTrains);

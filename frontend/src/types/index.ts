@@ -4,13 +4,15 @@ export interface Train {
   id: string;
   name: string;
   route: string;
-  status: 'On Time' | 'Delayed' | 'Cancelled' | 'Boarding';
+  status: 'On Time' | 'Delayed' | 'Cancelled' | 'Boarding' | 'Running Late';
   currentLocation: string;
   nextStation: string;
   delay?: number;
   speed?: number;
   capacity?: number;
   occupancy?: number;
+  type?: string;
+  platform?: string;
   coordinates?: {
     lat: number;
     lng: number;
@@ -23,8 +25,8 @@ export interface Schedule {
   departure: string;
   arrival: string;
   route: string;
-  platform?: string;
-  status?: 'Scheduled' | 'Delayed' | 'Cancelled';
+  platform: string;
+  status: 'Scheduled' | 'Delayed' | 'Cancelled' | 'On Time' | 'Running Late';
   stops?: string[];
 }
 

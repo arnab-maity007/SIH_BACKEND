@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-import { Train, Schedule, RouteOptimization, AnalyticsData, APIResponse } from '@/types';
+import axios from 'axios';
+import { Train, Schedule, APIResponse } from '@/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api';
 

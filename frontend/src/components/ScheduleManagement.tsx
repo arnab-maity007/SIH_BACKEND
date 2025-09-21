@@ -1,14 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-
-interface Schedule {
-  id: string;
-  trainId: string;
-  departure: string;
-  arrival: string;
-  route: string;
-}
+import { Schedule } from '@/types';
 
 interface ScheduleManagementProps {
   schedules: Schedule[];
@@ -22,7 +15,9 @@ const ScheduleManagement: React.FC<ScheduleManagementProps> = ({ schedules, setS
     trainId: '',
     departure: '',
     arrival: '',
-    route: ''
+    route: '',
+    platform: '',
+    status: 'On Time' as 'On Time' | 'Scheduled' | 'Delayed' | 'Cancelled' | 'Running Late'
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,7 +41,7 @@ const ScheduleManagement: React.FC<ScheduleManagementProps> = ({ schedules, setS
       setSchedules([...schedules, newSchedule]);
     }
     
-    setFormData({ trainId: '', departure: '', arrival: '', route: '' });
+    setFormData({ trainId: '', departure: '', arrival: '', route: '', platform: '', status: 'On Time' });
     setShowAddForm(false);
   };
 
@@ -56,7 +51,9 @@ const ScheduleManagement: React.FC<ScheduleManagementProps> = ({ schedules, setS
       trainId: schedule.trainId,
       departure: schedule.departure,
       arrival: schedule.arrival,
-      route: schedule.route
+      route: schedule.route,
+      platform: schedule.platform,
+      status: schedule.status
     });
     setShowAddForm(true);
   };
@@ -67,7 +64,7 @@ const ScheduleManagement: React.FC<ScheduleManagementProps> = ({ schedules, setS
   };
 
   const resetForm = () => {
-    setFormData({ trainId: '', departure: '', arrival: '', route: '' });
+    setFormData({ trainId: '', departure: '', arrival: '', route: '', platform: '', status: 'On Time' });
     setEditingSchedule(null);
     setShowAddForm(false);
   };
@@ -137,6 +134,34 @@ const ScheduleManagement: React.FC<ScheduleManagementProps> = ({ schedules, setS
                 />
               </div>
               
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Platform</label>
+                <input
+                  type="text"
+                  value={formData.platform}
+                  onChange={(e) => setFormData({ ...formData, platform: e.target.value })}
+                  placeholder="e.g., 1, 2A, 3B"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select
+                  value={formData.status}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value as 'On Time' | 'Scheduled' | 'Delayed' | 'Running Late' })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                >
+                  <option value="On Time">On Time</option>
+                  <option value="Scheduled">Scheduled</option>
+                  <option value="Delayed">Delayed</option>
+                  <option value="Running Late">Running Late</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+              
               <div className="md:col-span-2 flex space-x-3">
                 <button
                   type="submit"
@@ -175,6 +200,12 @@ const ScheduleManagement: React.FC<ScheduleManagementProps> = ({ schedules, setS
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Arrival
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Platform
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
